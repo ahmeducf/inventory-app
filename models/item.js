@@ -8,6 +8,7 @@ const ItemSchema = new mongoose.Schema({
   image: { type: String, unique: true, required: true },
   quantity: { type: Number, default: 0 },
   createdAt: { type: Date, default: () => Date.now },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
 });
 
 ItemSchema.virtual('url').get(function url() {
