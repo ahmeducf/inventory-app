@@ -6,6 +6,7 @@ module.exports = async () => {
     process.env.MONGODB_URI || process.env.MONGODB_URI_DEV;
 
   try {
+    mongoose.set('strictQuery', false);
     await mongoose.connect(connectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
