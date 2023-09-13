@@ -7,7 +7,7 @@ const ItemSchema = new mongoose.Schema({
   price: { type: Number, min: 0, required: true },
   image: { type: String, unique: true, required: true },
   quantity: { type: Number, default: 0 },
-  createdAt: { type: Date, default: () => Date.now },
+  createdAt: { type: Date, default: () => Date.now() },
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
 });
 
