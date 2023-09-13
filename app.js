@@ -3,9 +3,9 @@ const express = require('express');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const categoriesRouter = require('./routes/categories');
-const itemsRouter = require('./routes/items');
+const usersRouter = require('./routes/user');
+const categoriesRouter = require('./routes/category');
+const itemsRouter = require('./routes/item');
 
 const config = require('./config');
 const logger = require('./utils/logger');
