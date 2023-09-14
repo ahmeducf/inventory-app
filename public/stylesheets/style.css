@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Global styles */
+html {
+  box-sizing: border-box;
+  font-family: 'Lucida Grande', 'Cantarell', 'cursive', system-ui, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-a {
-  color: #00B7FF;
+*,
+*::before,
+*::after {
+  /* CSS Reset */
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* Catch errors */
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+ul,
+li {
+  list-style: none;
 }

@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/login.css')
+  body
+    main(role='main' aria-label='Login page')
+      h1 Login with your username and password
+      form(method='post', action='/login' aria-label='Login form')
+        fieldset(aria-label='Username field')
+          label(for='username' aria-label='username') Username
+          input#username(type='text', name='username' placeholder='Enter your username' autofocus required autocomplete='username')
+          .error= usernameErrMsg
+        fieldset(aria-label='Password field')
+          label(for='password' aria-label='password') Password
+          input#password(type='password', name='password' placeholder='Enter your password' required autocomplete='current-password')
+          .error= passwordErrMsg
+        fieldset(aria-label='Login button')
+          button(type='submit', value='Login') Login
+          em.tip use username: #[strong admin] and password: #[strong admin] to login.
