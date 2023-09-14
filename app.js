@@ -1,5 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const passport = require('passport');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
@@ -10,6 +13,7 @@ const itemsRouter = require('./routes/item');
 const config = require('./config');
 const logger = require('./utils/logger');
 const db = require('./utils/database');
+const { localStrategy, serializer, deserializer } = require('./utils/passport');
 
 require('dotenv').config();
 
@@ -20,8 +24,34 @@ config(app);
 db();
 
 app.use(logger());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI_DEV,
+      mongoOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+      ttl: 24 * 60 * 60,
+      collectionName: 'sessions',
+    }),
+  }),
+);
+
+passport.use(localStrategy);
+passport.serializeUser(serializer);
+passport.deserializeUser(deserializer);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
