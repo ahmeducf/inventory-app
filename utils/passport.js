@@ -6,13 +6,17 @@ const verifier = async (username, password, done) => {
   const user = await User.findOne({ username });
 
   if (!user) {
-    return done(null, false, { message: 'Incorrect username.' });
+    return done(null, false, {
+      message: 'username',
+    });
   }
 
   const valid = await user.verifyPassword(password);
 
   if (!valid) {
-    return done(null, false, { message: 'Incorrect password.' });
+    return done(null, false, {
+      message: 'password',
+    });
   }
 
   return done(null, user);
