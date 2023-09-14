@@ -10,6 +10,7 @@ const userArgs = process.argv.slice(2);
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Item = require('./models/item');
 const Category = require('./models/category');
@@ -54,9 +55,17 @@ async function userCreate(
   firstName,
   familyName,
 ) {
+  let hash;
+  try {
+    const salt = await bcrypt.genSalt(10);
+    hash = await bcrypt.hash(password, salt);
+  } catch (error) {
+    console.log(error);
+  }
+
   const data = {
     username,
-    password,
+    password: hash,
     admin,
     email,
     name: {
