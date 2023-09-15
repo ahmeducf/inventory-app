@@ -38,6 +38,7 @@ async function itemCreate(index, name, description, category, price, image) {
     category,
     price,
     image,
+    quantity: Math.floor(Math.random() * 100),
   };
 
   const item = new Item(data);
@@ -50,15 +51,14 @@ async function userCreate(
   index,
   username,
   password,
-  admin,
+  isAdmin,
   email,
   firstName,
   familyName,
 ) {
   let hash;
   try {
-    const salt = await bcrypt.genSalt(10);
-    hash = await bcrypt.hash(password, salt);
+    hash = await bcrypt.hash(password, 10);
   } catch (error) {
     console.log(error);
   }
@@ -66,7 +66,7 @@ async function userCreate(
   const data = {
     username,
     password: hash,
-    admin,
+    isAdmin,
     email,
     name: {
       firstName,
