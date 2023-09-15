@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Deleting category #[strong= category.name] will also delete all associated items. Are you sure you want to delete #[strong= category.name]?
+  form(action='' method='post')
+    fieldset.form-group
+      button(type='submit') Delete
+    fieldset.form-group
+      a(href='/') Cancel
