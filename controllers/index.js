@@ -2,6 +2,28 @@ const asyncHandler = require('express-async-handler');
 const passport = require('passport');
 const { body, validationResult } = require('express-validator');
 
+const Category = require('../models/category');
+const Item = require('../models/item');
+
+const { isAuthenticated } = require('./auth');
+
+module.exports.index = [
+  isAuthenticated,
+
+  asyncHandler(async (req, res) => {
+    const [items, categories] = await Promise.all([
+      Item.find().sort({ createdAt: 'desc' }).exec(),
+      Category.find().sort({ name: 'asc' }).exec(),
+    ]);
+
+    res.render('index', {
+      title: 'Inventory',
+      categories,
+      items,
+    });
+  }),
+];
+
 module.exports.loginGet = [
   (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -87,7 +109,7 @@ module.exports.loginPost = [
   }),
 ];
 
-module.exports.logoutPost = async (req, res, next) => {
+module.exports.logoutGet = async (req, res, next) => {
   req.logout((err) => {
     if (err) {
       next(err);
@@ -96,3 +118,21 @@ module.exports.logoutPost = async (req, res, next) => {
     }
   });
 };
+
+module.exports.profile = [
+  isAuthenticated,
+
+  asyncHandler(async (req, res) => {
+    const [items, categories] = await Promise.all([
+      Item.find({ user: req.user._id }).sort({ createdAt: 'desc' }).exec(),
+      Category.find().sort({ name: 'asc' }).exec(),
+    ]);
+
+    res.render('user_detail', {
+      title: 'Profile',
+      categories,
+      items,
+      user: req.user,
+    });
+  }),
+];

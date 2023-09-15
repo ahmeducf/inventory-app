@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .items
+    h2 Items
+    ul.items-list
+      each item in items
+        li
+          .card
+            a(href=item.url).card-image
+              img(src=item.imageSrc)
+            .card-content
+              .quantity-price
+                span.quantity= item.quantity
+                span.price= item.priceFormatted
+              .card-title= item.name

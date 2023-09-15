@@ -6,4 +6,32 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    main
+      .sidebar
+        .dropdown
+          button.dropbtn= currentUser.fullName
+          .dropdown-content
+            a(href='/profile') Profile
+            a(href='/items/create') Add New Item
+            a(href='/users') Users Settings
+            if currentUser.isAdmin
+              a(href='/users/create') Add New User
+            a(href='/logout') Logout
+        .categories
+          h3 Categories
+          a(href='/categories/create') New Category
+          ul
+            li
+              a(href='/') All
+            each category in categories
+              li
+                a(href=category.url)= category.name
+                if currentUser.isAdmin
+                  |
+                  |
+                  a(href=category.url + '/update') Update
+                  |
+                  |
+                  a(href=category.url + '/delete') Delete
+      .content-container
+        block content
