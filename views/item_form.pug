@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  form(action='' method='post' enctype='multipart/form-data')
+    fieldset.form-group
+      label(for='name') Name
+      input#name.form-control(type='text' name='name' value=item? item.name : '' placeholder='Name' required autofocus)
+    fieldset.form-group
+      label(for='description') Description
+      textarea#description.form-control(name='description' cols='30' rows='10' placeholder='Description' required)= item? item.description : ''
+    fieldset.form-group
+      label(for='price') Price
+      input#price.form-control(type='number' name='price' value=item? item.priceFormatted : '' step='0.01' placeholder='Price' required)
+    fieldset.form-group
+      label(for='quantity') Quantity
+      input#quantity.form-control(type='number' name='quantity' value=item? item.quantity : '' placeholder='Quantity' required)
+    fieldset.form-group
+      label(for='image') Image
+      input#image.form-control(type='file' name='image' value=item? item.imageSrc : 'test' accept='image/*' required)
+    fieldset.form-group
+      label(for='category') Category
+      select#category.form-control(name='category' required)
+        each category in categories
+          option(value=category._id selected=(item? item.category._id.toString() === category._id.toString() : false))= category.name
+    fieldset.form-group
+      button(type='submit')= title === 'Create Item' ? 'Add Item' : 'Update Item'

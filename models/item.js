@@ -12,15 +12,15 @@ const ItemSchema = new mongoose.Schema({
 });
 
 ItemSchema.virtual('url').get(function url() {
-  return `/item/${this._id}`;
+  return `/items/${this._id}`;
 });
 
 ItemSchema.virtual('priceFormatted').get(function priceFormatted() {
-  return `$${this.price.toFixed(2)}`;
+  return this.price.toFixed(2);
 });
 
 ItemSchema.virtual('createdAtFormatted').get(function createdAtFormatted() {
-  return DateTime.fromJSDate(this.created).toLocaleString(DateTime.DATE_MED);
+  return DateTime.fromJSDate(this.createdAt).toLocaleString(DateTime.DATE_MED);
 });
 
 ItemSchema.virtual('imageSrc').get(function imageSrc() {

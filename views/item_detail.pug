@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .left
+    img(src=item.imageSrc alt=item.name)
+  .right
+    .title= item.name
+    .category= item.category.name
+    .description= item.description
+    .quantity Quantity: #{item.quantity}
+    .price Price: #{item.price}
+    .update-delete
+      if currentUser.isAdmin
+        a(href=item.url + '/update') Update
+        a(href=item.url + '/delete') Delete

@@ -1,37 +1,31 @@
 const express = require('express');
+const {
+  index,
+  createGet,
+  createPost,
+  detail,
+  updateGet,
+  updatePost,
+  deleteGet,
+  deletePost,
+} = require('../controllers/item');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.get('/', index);
 
-router.get('/create', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.get('/create', createGet);
 
-router.post('/create', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.post('/create', createPost);
 
-router.get('/:id', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.get('/:id', detail);
 
-router.get('/:id/update', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.get('/:id/update', updateGet);
 
-router.post('/:id/update', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.post('/:id/update', updatePost);
 
-router.get('/:id/delete', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.get('/:id/delete', deleteGet);
 
-router.post('/:id/delete', (req, res, next) => {
-  res.send('Not implemented');
-});
+router.post('/:id/delete', deletePost);
 
 module.exports = router;
