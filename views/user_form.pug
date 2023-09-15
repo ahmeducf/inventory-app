@@ -1,0 +1,28 @@
+extends layout 
+
+block content
+  h1= title
+  form(method='POST', action='')
+    fieldset.form-group
+      label(for='first-name') First Name*
+      input#first-name.form-control(type='text', name='firstName', placeholder='First Name', value=user? user.name.firstName : '' autofocus auto-complete='given-name' required)
+    fieldset.form-group
+      label(for='family-name') Family Name*
+      input#family-name.form-control(type='text', name='familyName', placeholder='Family Name', value=user? user.name.familyName : '' auto-complete='family-name' required)
+    fieldset.form-group
+      label(for='username') Username*
+      input#username.form-control(type='text', name='username', placeholder='Username', value=user? user.username : '' auto-complete='username' required)
+    fieldset.form-group
+      label(for='email') Email*
+      input#email.form-control(type='email', name='email', placeholder='Email', value=user? user.email : '' auto-complete='email' required)
+    fieldset.form-group
+      label(for='password') Password*
+      input#password.form-control(type='password', name='password', placeholder='Password', value='' auto-complete='new-password' required)
+    fieldset.form-group
+      label(for='confirm-password') Confirm Password*
+      input#confirm-password.form-control(type='password', name='confirmPassword', placeholder='Confirm Password', value='' auto-complete='new-password' required)
+    fieldset.form-group
+      label(for='isAdmin') Admin
+      input#isAdmin.form-control(type='checkbox', name='isAdmin', checked=user? user.isAdmin : false)
+    fieldset.form-group
+      button(type='submit')= title === 'Create User' ? 'Create New User' : 'Update User'
