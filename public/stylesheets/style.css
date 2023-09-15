@@ -22,3 +22,7 @@ ul,
 li {
   list-style: none;
 }
+
+fieldset {
+  border: none;
+}
