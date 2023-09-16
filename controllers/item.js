@@ -30,7 +30,7 @@ module.exports.index = [
 ];
 
 module.exports.createGet = [
-  isAuthenticated,
+  isAdmin,
 
   asyncHandler(async (req, res) => {
     const categories = await Category.find().sort({ name: 1 }).exec();
@@ -43,7 +43,7 @@ module.exports.createGet = [
 ];
 
 module.exports.createPost = [
-  isAuthenticated,
+  isAdmin,
 
   upload.single('image'),
 

@@ -12,7 +12,8 @@ html
           .current-user #[span= currentUser.fullName] #[em= currentUser.isAdmin ? '(Admin)' : '']
           .settings-list
             a(href='/profile') Profile
-            a(href='/items/create') Add New Item
+            if currentUser.isAdmin
+              a(href='/items/create') Add New Item
             a(href='/users') Users Settings
             if currentUser.isAdmin
               a(href='/users/create') Add New User
