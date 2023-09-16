@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
+const compression = require('compression');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
@@ -31,7 +32,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI_DEV,
+      mongoUrl: process.env.MONGODB_URI,
       mongoOptions: {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -57,6 +58,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
