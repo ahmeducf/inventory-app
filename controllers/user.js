@@ -134,6 +134,9 @@ module.exports.createPost = [
 
       const usernameErr = errors.array().find((err) => err.path === 'username');
       const passwordErr = errors.array().find((err) => err.path === 'password');
+      const confirmPasswordErr = errors
+        .array()
+        .find((err) => err.path === 'confirmPassword');
       const emailErr = errors.array().find((err) => err.path === 'email');
       const isAdminErr = errors.array().find((err) => err.path === 'isAdmin');
       const firstNameErr = errors
@@ -145,6 +148,9 @@ module.exports.createPost = [
 
       user.usernameErrMsg = usernameErr ? usernameErr.msg : '';
       user.passwordErrMsg = passwordErr ? passwordErr.msg : '';
+      user.confirmPasswordErrMsg = confirmPasswordErr
+        ? confirmPasswordErr.msg
+        : '';
       user.emailErrMsg = emailErr ? emailErr.msg : '';
       user.isAdminErrMsg = isAdminErr ? isAdminErr.msg : '';
       user.firstNameErrMsg = firstNameErr ? firstNameErr.msg : '';
@@ -227,11 +233,10 @@ module.exports.updatePost = [
     .isLength({ min: 3, max: 100 })
     .withMessage('Username must be between 3 and 100 characters long.')
     .bail()
-    .custom(async (username) => {
+    .custom(async (username, {req}) => {
       try {
         const user = await User.findOne({ username });
-
-        if (user && user.username !== username) {
+        if (user && req.currentUser.username !== username) {
           throw new Error('This username is already taken.');
         }
       } catch (error) {
@@ -301,7 +306,7 @@ module.exports.updatePost = [
 
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
-
+    console.log(errors.array());
     const user = new User({
       _id: req.params.id,
       username: req.body.username,
@@ -319,6 +324,9 @@ module.exports.updatePost = [
 
       const usernameErr = errors.array().find((err) => err.path === 'username');
       const passwordErr = errors.array().find((err) => err.path === 'password');
+      const confirmPasswordErr = errors
+        .array()
+        .find((err) => err.path === 'confirmPassword');
       const emailErr = errors.array().find((err) => err.path === 'email');
       const isAdminErr = errors.array().find((err) => err.path === 'isAdmin');
       const firstNameErr = errors
@@ -330,6 +338,12 @@ module.exports.updatePost = [
 
       user.usernameErrMsg = usernameErr ? usernameErr.msg : '';
       user.passwordErrMsg = passwordErr ? passwordErr.msg : '';
+      user.confirmPasswordErrMsg = confirmPasswordErr
+        ? confirmPasswordErr.msg
+        : '';
+      user.confirmPasswordErrMsg = confirmPasswordErr
+        ? confirmPasswordErr.msg
+        : '';
       user.emailErrMsg = emailErr ? emailErr.msg : '';
       user.isAdminErrMsg = isAdminErr ? isAdminErr.msg : '';
       user.firstNameErrMsg = firstNameErr ? firstNameErr.msg : '';
