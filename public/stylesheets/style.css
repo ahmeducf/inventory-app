@@ -26,3 +26,120 @@ li {
 fieldset {
   border: none;
 }
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+a.btn:hover {
+  background-color: #0069d9;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* Layout */
+
+main {
+  display: flex;
+  
+}
+
+.sidebar {
+  flex: 0 0 300px;
+  background-color: #fff;
+  border-right: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px;
+}
+
+/** Settings **/
+
+.sidebar .settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings .current-user {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.settings .current-user span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.settings .current-user em {
+  font-size: .9rem;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/** Categories **/
+.sidebar .categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categories h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.categories a.btn {
+  margin-bottom: 16px;
+}
+
+.categories .categories-list {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  row-gap: 10px;
+  margin-top: 10px;
+  column-gap: 10px;
+}
+
+.category-item {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+a.btn.delete,
+a.btn.update {
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: normal;
+  transition: background-color 0.2s ease-in-out;
+}
+
+a.btn.delete {
+  background-color: #dc3545;
+}
+
+a.btn.delete:hover {
+  background-color: #c82333;
+}

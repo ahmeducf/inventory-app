@@ -8,9 +8,9 @@ html
   body
     main
       .sidebar
-        .dropdown
-          button.dropbtn= currentUser.fullName
-          .dropdown-content
+        .settings
+          .current-user #[span= currentUser.fullName] #[em= currentUser.isAdmin ? '(Admin)' : '']
+          .settings-list
             a(href='/profile') Profile
             a(href='/items/create') Add New Item
             a(href='/users') Users Settings
@@ -19,19 +19,17 @@ html
             a(href='/logout') Logout
         .categories
           h3 Categories
-          a(href='/categories/create') New Category
-          ul
-            li
-              a(href='/') All
+          a(href='/categories/create').btn Add New Category
+          a(href='/').category-item All
+          .categories-list
             each category in categories
-              li
-                a(href=category.url)= category.name
-                if currentUser.isAdmin
-                  |
-                  |
-                  a(href=category.url + '/update') Update
-                  |
-                  |
-                  a(href=category.url + '/delete') Delete
+              a(href=category.url).category-item= category.name
+              if currentUser.isAdmin
+                |
+                |
+                a(href=category.url + '/update').btn.update Update
+                |
+                |
+                a(href=category.url + '/delete').btn.delete Delete
       .content-container
         block content
