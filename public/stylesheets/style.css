@@ -33,7 +33,7 @@ a {
   text-decoration: none;
 }
 
-a.btn {
+.btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,10 +42,12 @@ a.btn {
   background-color: #2e7d32;
   color: #fff;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
   transition: background-color 0.2s ease-in-out;
 }
 
-a.btn:hover {
+.btn:hover {
   background-color: #1b5e20;
 }
 
@@ -111,14 +113,21 @@ main {
 }
 
 .categories > a.btn {
-  margin-bottom: 16px;
   background-color: #007bff;
+}
+
+.categories > a.btn:hover {
+  background-color: #0069d9;
+}
+
+.categories a.all-categories {
+  margin-top: 16px;
 }
 
 .categories .categories-list {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  row-gap: 10px;
+  row-gap: 20px;
   margin-top: 10px;
   column-gap: 10px;
 }
@@ -359,7 +368,8 @@ a.btn.update {
 }
 
 .update-delete,
-.delete-form {
+.delete-form,
+.submit-cancel {
   display: flex;
   gap: 16px;
 }
@@ -412,4 +422,73 @@ h1 {
 .delete-msg {
   max-width: 400px;
   line-height: 1.5;
+}
+
+/* Form Views */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form fieldset.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form fieldset.form-group.checkbox,
+.form fieldset.form-group.file {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+fieldset.form-group label {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+fieldset.form-group input,
+fieldset.form-group textarea,
+fieldset.form-group select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: #333;
+  max-width: 300px;
+}
+
+fieldset.form-group textarea {
+  resize: none;
+}
+
+fieldset.form-group input[type='checkbox'],
+fieldset.form-group input[type='file'] {
+  min-width: auto;
+}
+
+fieldset.form-group input[type='file'] {
+  color: #fff;
+  border: none;
+  margin-left: -8px;
+}
+
+fieldset.form-group input[type='checkbox']:checked {
+  background-color: #00b4d8;
+}
+
+input:focus-within,
+textarea:focus-within,
+select:focus-within {
+  outline-color: #00b4d8;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  height: 16px;
 }

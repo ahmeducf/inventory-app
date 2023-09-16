@@ -2,27 +2,37 @@ extends layout
 
 block content
   h1= title
-  form(method='POST', action='')
+  form(method='POST', action='').form
     fieldset.form-group
-      label(for='first-name') First Name*
+      label(for='first-name') First Name *
       input#first-name.form-control(type='text', name='firstName', placeholder='First Name', value=user? user.name.firstName : '' autofocus auto-complete='given-name' required)
+      .error= user? user.firstNameErrMsg : ''
     fieldset.form-group
-      label(for='family-name') Family Name*
+      label(for='family-name') Family Name *
       input#family-name.form-control(type='text', name='familyName', placeholder='Family Name', value=user? user.name.familyName : '' auto-complete='family-name' required)
+      .error= user? user.familyNameErrMsg : ''
     fieldset.form-group
-      label(for='username') Username*
+      label(for='username') Username *
       input#username.form-control(type='text', name='username', placeholder='Username', value=user? user.username : '' auto-complete='username' required)
+      .error= user? user.usernameErrMsg : ''
     fieldset.form-group
-      label(for='email') Email*
+      label(for='email') Email *
       input#email.form-control(type='email', name='email', placeholder='Email', value=user? user.email : '' auto-complete='email' required)
+      .error= user? user.emailErrMsg : ''
     fieldset.form-group
-      label(for='password') Password*
+      label(for='password') Password *
       input#password.form-control(type='password', name='password', placeholder='Password', value='' auto-complete='new-password' required)
+      .error= user? user.passwordErrMsg : ''
     fieldset.form-group
-      label(for='confirm-password') Confirm Password*
+      label(for='confirm-password') Confirm Password *
       input#confirm-password.form-control(type='password', name='confirmPassword', placeholder='Confirm Password', value='' auto-complete='new-password' required)
-    fieldset.form-group
+      .error= user? user.confirmPasswordErrMsg : ''
+    fieldset.form-group.checkbox
       label(for='isAdmin') Admin
       input#isAdmin.form-control(type='checkbox', name='isAdmin', checked=user? user.isAdmin : false)
-    fieldset.form-group
-      button(type='submit')= title === 'Create User' ? 'Create New User' : 'Update User'
+      .error= user? user.isAdminErrMsg : ''
+    .submit-cancel
+      fieldset.form-group
+        button(type='submit').btn.create.update= title === 'Create User' ? 'Add' : 'Update'
+      fieldset.form-group
+        a(href='/').btn.cancel Cancel
