@@ -182,17 +182,20 @@ module.exports.updatePost = [
     });
 
     if (!errors.isEmpty()) {
+      const categories = await Category.find().sort({ name: 'asc' }).exec();
+
       const nameErr = errors.array().find((err) => err.path === 'name');
       const descriptionErr = errors
         .array()
         .find((err) => err.path === 'description');
 
-      category.nameErrorMsg = nameErr ? nameErr.msg : '';
-      category.descriptionErrorMsg = descriptionErr ? descriptionErr.msg : '';
+      category.nameErrMsg = nameErr ? nameErr.msg : '';
+      category.descriptionErrMsg = descriptionErr ? descriptionErr.msg : '';
 
       res.render('category_form', {
         title: 'Update Category',
         category,
+        categories,
       });
       return;
     }
