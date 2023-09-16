@@ -4,6 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const compression = require('compression');
+const helmet = require('helmet');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
@@ -60,6 +61,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(compression());
+app.use(helmet());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
