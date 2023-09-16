@@ -411,6 +411,7 @@ h1 {
 .user-details p {
   display: flex;
   font-size: 1.2rem;
+  word-break: break-word;
 }
 
 .user-details strong {
