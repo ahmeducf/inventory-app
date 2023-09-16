@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Are you sure you want to delete #[strong= item.name] item?
-  form(action='' method='post')
+  p.delete-msg Are you sure you want to delete #[strong= item.name] item?
+  form(action='' method='post').delete-form
     fieldset.form-group
-      button(type='submit') Delete
+      button(type='submit').btn.delete Delete
     fieldset.form-group
-      a(href='/') Cancel
+      a(href='/').btn.cancel Cancel

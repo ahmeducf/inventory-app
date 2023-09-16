@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Deleting category #[strong= category.name] will also delete all associated items. Are you sure you want to delete #[strong= category.name]?
-  form(action='' method='post')
+  p.delete-msg Deleting category #[strong= category.name] will also delete all associated items. Are you sure you want to delete #[strong= category.name]?
+  form(action='' method='post').delete-form
     fieldset.form-group
-      button(type='submit') Delete
+      button(type='submit').btn.delete Delete
     fieldset.form-group
-      a(href='/') Cancel
+      a(href='/').btn.cancel Cancel

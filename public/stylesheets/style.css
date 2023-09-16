@@ -137,12 +137,28 @@ a.btn.update {
   transition: background-color 0.2s ease-in-out;
 }
 
-a.btn.delete {
+.btn.delete {
   background-color: #dc3545;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: #fff;
 }
 
-a.btn.delete:hover {
+.btn.cancel {
+  background-color: #6c757d;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: #fff;
+}
+
+.btn.delete:hover {
   background-color: #c82333;
+}
+
+.btn.cancel:hover {
+  background-color: #5a6268;
 }
 
 /* Content */
@@ -342,13 +358,15 @@ a.btn.delete:hover {
   font-weight: bold;
 }
 
-.update-delete {
+.update-delete,
+.delete-form {
   display: flex;
   gap: 16px;
 }
 
 .update-delete .btn.update,
-.update-delete .btn.delete {
+.update-delete .btn.delete,
+.form-group .btn {
   padding: 8px 16px;
   border-radius: 4px;
   font-weight: bold;
@@ -387,4 +405,11 @@ h1 {
 
 .user-details strong {
   min-width: 150px;
+}
+
+/* Delete Views */
+
+.delete-msg {
+  max-width: 400px;
+  line-height: 1.5;
 }
