@@ -233,10 +233,10 @@ module.exports.updatePost = [
     .isLength({ min: 3, max: 100 })
     .withMessage('Username must be between 3 and 100 characters long.')
     .bail()
-    .custom(async (username, {req}) => {
+    .custom(async (username) => {
       try {
         const user = await User.findOne({ username });
-        if (user && req.currentUser.username !== username) {
+        if (user && user.username !== username) {
           throw new Error('This username is already taken.');
         }
       } catch (error) {
@@ -281,12 +281,7 @@ module.exports.updatePost = [
     .isEmail()
     .withMessage('Email must be a valid email address.')
     .escape(),
-  body('isAdmin')
-    .optional()
-    .default(false)
-    .isBoolean()
-    .withMessage('isAdmin must be a boolean value.')
-    .escape(),
+  body('isAdmin').optional().default(false).escape(),
   body('firstName')
     .exists()
     .trim()
@@ -306,13 +301,12 @@ module.exports.updatePost = [
 
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
-    console.log(errors.array());
     const user = new User({
       _id: req.params.id,
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,
-      isAdmin: req.body.isAdmin,
+      isAdmin: !!req.body.isAdmin,
       name: {
         firstName: req.body.firstName,
         familyName: req.body.familyName,
