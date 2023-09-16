@@ -7,8 +7,7 @@ module.exports.isAuthenticated = (req, res, next) => {
 }
 
 module.exports.isAdmin = (req, res, next) => {
-  if (!req.isAuthenticated() || req.user.isAdmin === false) {
-    console.log(req.user.isAdmin);
+  if (!req.isAuthenticated() || (req.user && req.user.isAdmin === false)) {
     res.redirect('/');
   } else {
     next();
