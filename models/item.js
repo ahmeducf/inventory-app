@@ -5,10 +5,14 @@ const ItemSchema = new mongoose.Schema({
   name: { type: String, minlength: 3, maxlength: 100, required: true },
   description: { type: String, minlength: 3, maxlength: 1000, required: true },
   price: { type: Number, min: 0, required: true },
-  image: { type: String, unique: true, required: true },
+  image: { type: String, required: true },
   quantity: { type: Number, default: 0 },
   createdAt: { type: Date, default: () => Date.now() },
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
 });
 
 ItemSchema.virtual('url').get(function url() {

@@ -20,9 +20,8 @@ block content
       input#quantity.form-control(type='number' name='quantity' value=item? item.quantity : '' placeholder='Quantity' required)
       .error= item? item.quantityErrMsg : ''
     fieldset.form-group
-      label(for='image') Image *
-      input#image.form-control(type='file' name='image' value=item? item.imageSrc : 'test' accept='image/*' required)
-      .error= item? item.imageErrMsg : ''
+      label(for='image') Image
+      input#image.form-control(type='file' name='image' value=item? item.image : 'test' accept='image/*')
     fieldset.form-group
       label(for='category') Category *
       select#category.form-control(name='category' required)

@@ -109,7 +109,7 @@ module.exports.createPost = [
     item.categoryErrorMsg = categoryErr ? categoryErr.msg : '';
 
     if (!req.file) {
-      item.imageErrorMsg = 'Image must be specified';
+      item.image = 'placeholder-image.png';
     } else {
       item.image = req.file.filename;
     }
@@ -120,7 +120,7 @@ module.exports.createPost = [
   }),
 
   asyncHandler(async (req, res) => {
-    if (!req.errors.isEmpty() || !req.file) {
+    if (!req.errors.isEmpty()) {
       const categories = await Category.find().sort({ name: 1 }).exec();
 
       res.render('item_form', {
@@ -255,14 +255,14 @@ module.exports.updatePost = [
       category: req.body.category,
     });
 
-    req.item.nameErrorMsg = nameErr ? nameErr.msg : '';
-    req.item.descriptionErrorMsg = descriptionErr ? descriptionErr.msg : '';
-    req.item.priceErrorMsg = priceErr ? priceErr.msg : '';
-    req.item.quantityErrorMsg = quantityErr ? quantityErr.msg : '';
-    req.item.categoryErrorMsg = categoryErr ? categoryErr.msg : '';
+    req.item.nameErrMsg = nameErr ? nameErr.msg : '';
+    req.item.descriptionErrMsg = descriptionErr ? descriptionErr.msg : '';
+    req.item.priceErrMsg = priceErr ? priceErr.msg : '';
+    req.item.quantityErrMsg = quantityErr ? quantityErr.msg : '';
+    req.item.categoryErrMsg = categoryErr ? categoryErr.msg : '';
 
     if (!req.file) {
-      req.item.imageErrorMsg = 'Image must be specified';
+      req.item.image = req.body.image;
     } else {
       req.item.image = req.file.filename;
     }
@@ -273,7 +273,7 @@ module.exports.updatePost = [
   }),
 
   asyncHandler(async (req, res) => {
-    if (!req.errors.isEmpty() || !req.file) {
+    if (!req.errors.isEmpty()) {
       const categories = await Category.find().sort({ name: 1 }).exec();
 
       res.render('item_form', {
