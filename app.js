@@ -16,6 +16,7 @@ const config = require('./config');
 const logger = require('./utils/logger');
 const db = require('./utils/database');
 const { localStrategy, serializer, deserializer } = require('./utils/passport');
+const limiter = require('./utils/rate_limit');
 
 require('dotenv').config();
 
@@ -62,6 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(compression());
 app.use(helmet());
+app.use(limiter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
