@@ -102,11 +102,11 @@ module.exports.createPost = [
     const quantityErr = errors.array().find((err) => err.path === 'quantity');
     const categoryErr = errors.array().find((err) => err.path === 'category');
 
-    item.nameErrorMsg = nameErr ? nameErr.msg : '';
-    item.descriptionErrorMsg = descriptionErr ? descriptionErr.msg : '';
-    item.priceErrorMsg = priceErr ? priceErr.msg : '';
-    item.quantityErrorMsg = quantityErr ? quantityErr.msg : '';
-    item.categoryErrorMsg = categoryErr ? categoryErr.msg : '';
+    item.nameErrMsg = nameErr ? nameErr.msg : '';
+    item.descriptionErrMsg = descriptionErr ? descriptionErr.msg : '';
+    item.priceErrMsg = priceErr ? priceErr.msg : '';
+    item.quantityErrMsg = quantityErr ? quantityErr.msg : '';
+    item.categoryErrMsg = categoryErr ? categoryErr.msg : '';
 
     if (!req.file) {
       item.image = 'placeholder-image.png';
