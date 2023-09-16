@@ -108,6 +108,7 @@ module.exports.getItemsByCategory = [
         currentUser: req.user,
         items,
         categories,
+        category,
       });
     }
   }),
