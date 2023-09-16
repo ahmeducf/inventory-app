@@ -1,15 +1,14 @@
 extends layout 
 
 block content
-  h1= title 
+  h1.users-heading Users List
   .users-container
-    .username Username
-    .full-name Full Name
-    .email Email
-    .role Role
+    .username #[strong Username]
+    .full-name #[strong Full Name]
+    .email #[strong Email]
+    .role #[strong Role]
     each user in users
-      .user
-        a.username(href=user.url)= user.username
-        .full-name= user.fullName
-        .email= user.email
-        .role= user.isAdmin? 'Admin' : 'User'
+      a.username(href=user.url)= user.username
+      .full-name= user.fullName
+      .email= user.email
+      .role= user.isAdmin? 'Admin' : 'User'

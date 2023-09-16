@@ -1,15 +1,19 @@
 extends layout
 
 block content
-  .left
-    img(src=item.imageSrc alt=item.name)
-  .right
-    .title= item.name
-    .category= item.category.name
-    .description= item.description
-    .quantity Quantity: #{item.quantity}
-    .price Price: #{item.price}
-    .update-delete
-      if currentUser.isAdmin
-        a(href=item.url + '/update') Update
-        a(href=item.url + '/delete') Delete
+  a(href='/items').back #[div.left-arrow &#8617;] Back to all items
+  .item-detail
+    .left
+      img(src=item.imageSrc alt=item.name)
+    .right
+      .wrapper
+        .title-category
+          h1.title= item.name
+          span.category= item.category.name
+        p.description= item.description
+        .quantity #[strong Quantity:] #{item.quantity}
+        .price #[strong Price:] $#{item.priceFormatted}
+      .update-delete
+        if currentUser.isAdmin
+          a(href=item.url + '/update').btn.update Update
+          a(href=item.url + '/delete').btn.delete Delete

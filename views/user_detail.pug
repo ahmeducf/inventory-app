@@ -2,14 +2,14 @@ extends layout
 
 block content
   h1= currentUser._id.toString() === user._id.toString() ? 'Profile Details' : 'User Details'
-  .details
-    p Name: #{user.fullName}
-    p Username: #{user.username}
-    p Email: #{user.email}
-    p Role: #{user.isAdmin ? 'Admin' : 'User'}
-    p Created at: #{user.createdAtFormatted}
-
-  if currentUser.isAdmin
-    a(href=user.url + '/update') Update
-  if currentUser.isAdmin && currentUser._id.toString() !== user._id.toString()
-    a(href=user.url + '/delete') Delete
+  .user-details
+    p #[strong Name:] #{user.fullName}
+    p #[strong Username:] #{user.username}
+    p #[strong Email:] #{user.email}
+    p #[strong Role:] #{user.isAdmin ? 'Admin' : 'User'}
+    p #[strong Created at:] #{user.createdAtFormatted}
+  .update-delete
+    if currentUser.isAdmin
+      a(href=user.url + '/update').update.btn Update
+    if currentUser.isAdmin && currentUser._id.toString() !== user._id.toString()
+      a(href=user.url + '/delete').delete.btn Delete
